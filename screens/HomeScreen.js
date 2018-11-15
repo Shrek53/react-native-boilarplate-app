@@ -9,46 +9,48 @@ import {
   View,
 } from 'react-native';
 import { WebBrowser } from 'expo';
-
+import {Header,Left,Right,Body,Icon} from 'native-base';
 import { MonoText } from '../components/StyledText';
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
     header: null,
+    drawerIcon:({tintColor}) => (
+      <Icon name='home' style={{justifyContent: "flex-start",fontSize:24,color:tintColor}}/>
+    )
   };
 
   render() {
     return (
       <View style={styles.container}>
+      <Header style={{backgroundColor:'#00ccff'}}>
+        <Left >
+          <Icon name='menu' style={{marginTop:10, fontSize:32, color:'white'}} onPress={()=>this.props.navigation.openDrawer()} />
+        </Left>
+        <Body />
+        <Right />
+      </Header>
         <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
-          <View style={styles.welcomeContainer}>
-            <Image
-              source={
-                __DEV__
-                  ? require('../assets/images/robot-dev.png')
-                  : require('../assets/images/robot-prod.png')
-              }
-              style={styles.welcomeImage}
-            />
-          </View>
+            <View style={styles.welcomeContainer}>
+              <Image
+                source={
+                  __DEV__
+                    ? require('../assets/images/robot-dev.png')
+                    : require('../assets/images/robot-prod.png')
+                }
+                style={styles.welcomeImage}
+              />
+            </View>
 
-          <View style={styles.getStartedContainer}>
-            {/* {this._maybeRenderDevelopmentModeWarning()} */}
+            <View style={styles.getStartedContainer}>
+              {/* {this._maybeRenderDevelopmentModeWarning()} */}
 
 
-            <Text style={styles.getStartedText}>
-              Boilar plate app with drawer and bottom tab navigation
-            </Text>
-          </View>
+              <Text style={styles.getStartedText}>
+                Boilar plate app with drawer and bottom tab navigation
+              </Text>
+            </View>
         </ScrollView>
-
-        <View style={styles.tabBarInfoContainer}>
-          <Text style={styles.tabBarInfoText}>This is a tab bar. You can edit it in:</Text>
-
-          <View style={[styles.codeHighlightContainer, styles.navigationFilename]}>
-            <MonoText style={styles.codeHighlightText}>navigation/MainTabNavigator.js</MonoText>
-          </View>
-        </View>
       </View>
     );
   }

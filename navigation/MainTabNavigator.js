@@ -70,8 +70,8 @@ const MainBottomTab = createBottomTabNavigator({
 
 const CustomDrawerComponent = (props) => (
   <SafeAreaView style={{flex:1}}>
-    <View style={{height:150, backgroundColor:'white', alignItems:'center', justifyContent:'center'}}>
-      <Image source={require("../assets/images/robot-dev.png")}/>
+    <View style={{height:200, backgroundColor:'#00ccff', alignItems:'center', justifyContent:'center'}}>
+      <Image source={require("../assets/images/robot-dev.png")} style={{height:120, width:120, borderRadius:60}} />
     </View>
     <View>
       <DrawerItems {...props} />
@@ -102,7 +102,11 @@ const MainDrawer = createDrawerNavigator({
     screen: SettingsStack,
   },
 },{
-  contentComponent: CustomDrawerComponent
+  contentComponent: CustomDrawerComponent,
+  contentOptions:{
+    activeTintColor: '#00ccff',
+  }
+  
 });
 
 
