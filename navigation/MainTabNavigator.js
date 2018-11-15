@@ -1,6 +1,6 @@
 import React from 'react';
-import { Platform } from 'react-native';
-import { createStackNavigator, createBottomTabNavigator,createDrawerNavigator } from 'react-navigation';
+import { Platform, SafeAreaView,View,Text,StyleSheet, Image } from 'react-native';
+import { createStackNavigator, createBottomTabNavigator,createDrawerNavigator,DrawerItems } from 'react-navigation';
 
 import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
@@ -68,6 +68,17 @@ const MainBottomTab = createBottomTabNavigator({
   }
 });
 
+const CustomDrawerComponent = (props) => (
+  <SafeAreaView style={{flex:1}}>
+    <View style={{height:150, backgroundColor:'white', alignItems:'center', justifyContent:'center'}}>
+      <Image source={require("../assets/images/robot-dev.png")}/>
+    </View>
+    <View>
+      <DrawerItems {...props} />
+    </View>
+  </SafeAreaView>
+)
+
 class NullComponent extends React.Component {
   render(){
     return (null);
@@ -90,6 +101,8 @@ const MainDrawer = createDrawerNavigator({
   Settings: {
     screen: SettingsStack,
   },
+},{
+  contentComponent: CustomDrawerComponent
 });
 
 
