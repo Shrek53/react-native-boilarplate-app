@@ -59,12 +59,14 @@ const MainBottomTab = createBottomTabNavigator({
   SettingsStack,
 },{
   navigationOptions:{
-    tabBarOptions:{
-      safeAreaInset:{
-         bottom: 'always', 
-         top: 'always' 
-      }
-    }
+    
+  },
+  tabBarOptions:{
+    // safeAreaInset:{
+    //    bottom: 'always', 
+    //    top: 'always' 
+    // },
+    // height:50,
   }
 });
 

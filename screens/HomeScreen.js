@@ -9,7 +9,7 @@ import {
   View,
 } from 'react-native';
 import { WebBrowser } from 'expo';
-import {Header,Left,Right,Body,Icon} from 'native-base';
+import {Header,Left,Right,Body,Icon,Title} from 'native-base';
 import { MonoText } from '../components/StyledText';
 
 export default class HomeScreen extends React.Component {
@@ -27,7 +27,10 @@ export default class HomeScreen extends React.Component {
         <Left >
           <Icon name='menu' style={{marginTop:10, fontSize:32, color:'white'}} onPress={()=>this.props.navigation.openDrawer()} />
         </Left>
-        <Body />
+        <Body style={{flex:1}} >
+          {/* <Title style={{flex:1,fontFamily:'space-mono',color:'white'}}>Boilarplate</Title> */}
+          <Text style={{flex:1,marginTop:20, fontSize:16,color:'white'}}>Boilarplate</Text>
+        </Body>
         <Right />
       </Header>
         <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
