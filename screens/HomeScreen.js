@@ -7,19 +7,32 @@ import {
   Text,
   TouchableOpacity,
   View,
+  AsyncStorage
 } from 'react-native';
 import { WebBrowser } from 'expo';
 import {Header,Left,Right,Body,Icon,Title} from 'native-base';
 import { MonoText } from '../components/StyledText';
 
 
+
 export default class HomeScreen extends React.Component {
+
+  // constructor(props) {
+  //     super(props);
+  //     this.state={"user_email" : 'sdfsdf'};
+  //   }
   static navigationOptions = {
     header: null,
     drawerIcon:({tintColor}) => (
       <Icon name='home' style={{justifyContent: "flex-start",fontSize:24,color:tintColor}}/>
     )
   };
+
+  // ComponentWillMount(){
+  //   this.setState({
+  //     "user_email": (await AsyncStorage.getItem('email'))
+  //   })
+  // }
 
   render() {
     return (
@@ -48,10 +61,12 @@ export default class HomeScreen extends React.Component {
 
             <View style={styles.getStartedContainer}>
               {/* {this._maybeRenderDevelopmentModeWarning()} */}
-
+              
 
               <Text style={styles.getStartedText}>
-                Boilar plate app with drawer and bottom tab navigation
+
+              {/* Welcome {this.state.user_email},  */}
+              This is a Boilar plate app with drawer and bottom tab navigation
               </Text>
             </View>
         </ScrollView>

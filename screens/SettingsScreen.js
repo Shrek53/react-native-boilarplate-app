@@ -1,6 +1,6 @@
-import React from 'react';
+import  React  from 'react';
 import { ExpoConfigView } from '@expo/samples';
-import { View, Button,AsyncStorage } from 'react-native';
+import { View, Button, AsyncStorage } from 'react-native';
 
 export default class SettingsScreen extends React.Component {
   static navigationOptions = {

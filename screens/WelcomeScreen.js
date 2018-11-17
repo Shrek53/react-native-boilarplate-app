@@ -19,11 +19,19 @@ import { MonoText } from '../components/StyledText';
 var { width, height } = Dimensions.get('window')
 
 export default class WelcomeScreen extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {email: '', password: ''};
+  }
   static navigationOptions = {
     header: null,
   };
   signIn= async ()=> {
-    await AsyncStorage.setItem('userToken', 'apon')
+    await AsyncStorage.setItem('userToken', 'apon');
+    await AsyncStorage.setItem('email', this.state.email);
+    // eml= await AsyncStorage.getItem('email');
+    // this.setState({email: eml+'1111111'})
+    await AsyncStorage.setItem('password', this.state.password);
     this.props.navigation.navigate("App")
   }
   render() {
@@ -32,11 +40,19 @@ export default class WelcomeScreen extends React.Component {
             <View style={[styles.contain_items, styles.input_container]}>
                 <View style={styles.row_items}>
                     <Text>Email: </Text>
-                    <TextInput  style={styles.input_field}/>
+                    <TextInput  style={styles.input_field}
+                                onChangeText={(email) => this.setState({email})}
+                                value={this.state.email}
+                    />
+                    <Text>{this.state.email}</Text>
                 </View>
                 <View style={styles.row_items}>
                     <Text>Password: </Text>
-                    <TextInput   secureTextEntry={true}  style={styles.input_field} />
+                    <TextInput  secureTextEntry={true}  
+                                style={styles.input_field} 
+                                onChangeText={(password) => this.setState({password})}
+                                value={this.state.password}
+                    />
                 </View>
                 <View>
                     <Button  title="SignIn" onPress={this.signIn}/>
