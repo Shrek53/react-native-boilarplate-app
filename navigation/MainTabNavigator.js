@@ -1,11 +1,23 @@
 import React from 'react';
-import { Platform, SafeAreaView,View,Text,StyleSheet, Image } from 'react-native';
-import { createStackNavigator, createBottomTabNavigator,createDrawerNavigator,DrawerItems } from 'react-navigation';
-
+import { Platform, SafeAreaView,View,Text,StyleSheet, Image,Button, AsyncStorage } from 'react-native';
+import {
+  createStackNavigator,
+  createBottomTabNavigator,
+  createDrawerNavigator,
+  DrawerItems,
+  createMaterialTopTabNavigator,
+  createSwitchNavigator,
+} from 'react-navigation';
+import {  createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
 import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
 import LinksScreen from '../screens/LinksScreen';
 import SettingsScreen from '../screens/SettingsScreen';
+import SignInScreen from '../screens/SignInScreen';
+import SignUpScreen from '../screens/SignUpScreen';
+import WelcomeScreen from '../screens/WelcomeScreen';
+import AuthLoadingScreen from '../screens/authLoadingScreen';
+
 
 const HomeStack = createStackNavigator({
   Home: HomeScreen,
@@ -13,9 +25,12 @@ const HomeStack = createStackNavigator({
 
 HomeStack.navigationOptions = {
   tabBarLabel: 'Home',
-  tabBarIcon: ({ focused }) => (
+  tabBarIcon: ({ focused, tintColor }) => (
     <TabBarIcon
-      focused={focused}
+      // focused={focused}
+      color = {
+        tintColor
+      }
       name={
         Platform.OS === 'ios'
           ? `ios-information-circle${focused ? '' : '-outline'}`
@@ -31,9 +46,10 @@ const LinksStack = createStackNavigator({
 
 LinksStack.navigationOptions = {
   tabBarLabel: 'Links',
-  tabBarIcon: ({ focused }) => (
+  tabBarIcon: ({ focused, tintColor }) => (
     <TabBarIcon
-      focused={focused}
+      // focused={focused}
+      color={tintColor}
       name={Platform.OS === 'ios' ? 'ios-link' : 'md-link'}
     />
   ),
@@ -45,29 +61,37 @@ const SettingsStack = createStackNavigator({
 
 SettingsStack.navigationOptions = {
   tabBarLabel: 'Settings',
-  tabBarIcon: ({ focused }) => (
+  tabBarIcon: ({ focused, tintColor }) => (
     <TabBarIcon
-      focused={focused}
+      // focused={focused}
+      color = {
+        tintColor
+      }
       name={Platform.OS === 'ios' ? 'ios-options' : 'md-options'}
     />
   ),
 };
 
-const MainBottomTab = createBottomTabNavigator({
+const MainBottomTab = createMaterialTopTabNavigator({
   HomeStack,
   LinksStack,
   SettingsStack,
 },{
+  tabBarPosition:"bottom",
   navigationOptions:{
-    
   },
   tabBarOptions:{
-    // safeAreaInset:{
-    //    bottom: 'always', 
-    //    top: 'always' 
-    // },
-    // height:50,
-  }
+    activeTintColor: "green",
+    inactiveTintColor: "#00ccff",
+    style:{
+      backgroundColor: "white"
+    },
+    indicatorStyle:{
+      height: 0
+    },
+    showIcon:'true'
+  },
+  swipeEnabled:true,
 });
 
 const CustomDrawerComponent = (props) => (
@@ -87,7 +111,7 @@ class NullComponent extends React.Component {
   }
 }
 
-const MainDrawer = createDrawerNavigator({
+const AppDrawerNavigator = createDrawerNavigator({
   Tab :{
     screen: MainBottomTab,
     navigationOptions:{
@@ -111,6 +135,18 @@ const MainDrawer = createDrawerNavigator({
   
 });
 
+const AuthStackNavigator= createStackNavigator({
+  Welcome: WelcomeScreen,
+  SignIn: SignInScreen,
+  SignUp: SignUpScreen,
+})
+
+mainSwitchNavigator= createSwitchNavigator({
+  AuthLoading: AuthLoadingScreen,
+  Auth: AuthStackNavigator,
+  App : AppDrawerNavigator
+})
 
 
-export default MainDrawer; 
+// export default AppDrawerNavigator;
+export default mainSwitchNavigator;
