@@ -5,48 +5,24 @@ import {
   ScrollView,
   StyleSheet,
   Text,
-  TouchableOpacity,
   View,
-  AsyncStorage
 } from 'react-native';
 import { WebBrowser } from 'expo';
-import {Header,Left,Right,Body,Icon,Title} from 'native-base';
-import { MonoText } from '../components/StyledText';
-
-
+import CommonHeader from './partial/CommonHeader';
 
 export default class HomeScreen extends React.Component {
 
-  // constructor(props) {
-  //     super(props);
-  //     this.state={"user_email" : 'sdfsdf'};
-  //   }
+  constructor(props) {
+      super(props);
+    }
   static navigationOptions = {
     header: null,
-    drawerIcon:({tintColor}) => (
-      <Icon name='home' style={{justifyContent: "flex-start",fontSize:24,color:tintColor}}/>
-    )
   };
-
-  // ComponentWillMount(){
-  //   this.setState({
-  //     "user_email": (await AsyncStorage.getItem('email'))
-  //   })
-  // }
 
   render() {
     return (
       <View style={styles.container}>
-      <Header style={{backgroundColor:'#00ccff'}}>
-              <Left >
-                <Icon name='menu' style={{marginTop:10, fontSize:32, color:'white'}} onPress={()=>this.props.navigation.openDrawer()} />
-              </Left>
-              <Body style={{flex:1}} >
-                {/* <Title style={{flex:1,fontFamily:'space-mono',color:'white'}}>Boilarplate</Title> */}
-                <Text style={{flex:1,marginTop:20, fontSize:16,color:'white'}}>Boilarplate</Text>
-              </Body>
-              <Right />
-          </Header>
+        <CommonHeader title='Home'/>
         <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
             <View style={styles.welcomeContainer}>
               <Image
@@ -60,11 +36,7 @@ export default class HomeScreen extends React.Component {
             </View>
 
             <View style={styles.getStartedContainer}>
-              {/* {this._maybeRenderDevelopmentModeWarning()} */}
-              
-
               <Text style={styles.getStartedText}>
-
               {/* Welcome {this.state.user_email},  */}
               This is a Boilar plate app with drawer and bottom tab navigation
               </Text>

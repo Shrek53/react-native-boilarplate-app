@@ -1,5 +1,5 @@
 import React from 'react';
-import { Platform, SafeAreaView,View,Text,StyleSheet, Image,Button, AsyncStorage } from 'react-native';
+import { Platform, SafeAreaView,View,Text,StyleSheet, Image,Button, AsyncStorage, ScrollView } from 'react-native';
 import {
   createStackNavigator,
   createBottomTabNavigator,
@@ -8,7 +8,7 @@ import {
   createMaterialTopTabNavigator,
   createSwitchNavigator,
 } from 'react-navigation';
-import {  createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
+import {Icon} from 'native-base';
 import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
 import LinksScreen from '../screens/LinksScreen';
@@ -25,12 +25,10 @@ const HomeStack = createStackNavigator({
 
 HomeStack.navigationOptions = {
   tabBarLabel: 'Home',
-  tabBarIcon: ({ focused, tintColor }) => (
+  tabBarIcon: ({ tintColor }) => (
     <TabBarIcon
       // focused={focused}
-      color = {
-        tintColor
-      }
+      color = { tintColor }
       name={
         Platform.OS === 'ios'
           ? `ios-information-circle${focused ? '' : '-outline'}`
@@ -46,10 +44,10 @@ const LinksStack = createStackNavigator({
 
 LinksStack.navigationOptions = {
   tabBarLabel: 'Links',
-  tabBarIcon: ({ focused, tintColor }) => (
+  tabBarIcon: ({ tintColor }) => (
     <TabBarIcon
       // focused={focused}
-      color={tintColor}
+      color={ tintColor }
       name={Platform.OS === 'ios' ? 'ios-link' : 'md-link'}
     />
   ),
@@ -61,20 +59,18 @@ const SettingsStack = createStackNavigator({
 
 SettingsStack.navigationOptions = {
   tabBarLabel: 'Settings',
-  tabBarIcon: ({ focused, tintColor }) => (
+  tabBarIcon: ({ tintColor }) => (
     <TabBarIcon
       // focused={focused}
-      color = {
-        tintColor
-      }
-      name={Platform.OS === 'ios' ? 'ios-options' : 'md-options'}
+      color =  {tintColor} 
+      name={Platform.OS === 'ios' ? 'ios-options' : 'md-settings'}
     />
   ),
 };
 
 const MainBottomTab = createMaterialTopTabNavigator({
   HomeStack,
-  LinksStack,
+  // LinksStack,
   SettingsStack,
 },{
   tabBarPosition:"bottom",
@@ -99,9 +95,9 @@ const CustomDrawerComponent = (props) => (
     <View style={{height:200, backgroundColor:'#00ccff', alignItems:'center', justifyContent:'center'}}>
       <Image source={require("../assets/images/robot-dev.png")} style={{height:120, width:120, borderRadius:60}} />
     </View>
-    <View>
+    <ScrollView>
       <DrawerItems {...props} />
-    </View>
+    </ScrollView>
   </SafeAreaView>
 )
 
@@ -120,17 +116,29 @@ const AppDrawerNavigator = createDrawerNavigator({
   },
   Home: {
     screen: HomeStack,
+    navigationOptions: {
+      drawerLabel: 'Home',
+      drawerIcon:({tintColor}) => (
+          <Icon name='home' style={{fontSize:24, color: tintColor}}/>
+        )
+      }
   },
-  Links: {
-    screen: LinksStack,
-  },
+  // Links: {
+  //   screen: LinksStack,
+  // },
   Settings: {
     screen: SettingsStack,
+    navigationOptions: {
+      drawerLabel: 'Settings',
+      drawerIcon:({tintColor}) => (
+          <Icon name='settings' style={{fontSize:24, color: tintColor}}/>
+        )
+      }
   },
 },{
   contentComponent: CustomDrawerComponent,
   contentOptions:{
-    activeTintColor: '#00ccff',
+    activeTintColor: 'orange',
   }
   
 });

@@ -1,10 +1,12 @@
 import  React  from 'react';
 import { ExpoConfigView } from '@expo/samples';
-import { View, Button, AsyncStorage } from 'react-native';
+import { View, Button, AsyncStorage,StyleSheet } from 'react-native';
+import CommonHeader from './partial/CommonHeader';
 
 export default class SettingsScreen extends React.Component {
   static navigationOptions = {
     title: 'Settings',
+    header: null,
   };
   signOut = async () => {
     await AsyncStorage.clear()
@@ -15,9 +17,19 @@ export default class SettingsScreen extends React.Component {
      * content, we just wanted to give you a quick view of your config */
     // return <ExpoConfigView />;
     return(
-      <View style={{flex:1,alignItems:'center',justifyContent:'center'}}>
-        <Button title='sign out' onPress={this.signOut}/>
+      <View style={styles.container}>
+        <CommonHeader title="Settings"/>
+        <View style={{flex:1,alignItems:'center',justifyContent:'center'}}>
+          <Button title='sign out' onPress={this.signOut}/>
+        </View>
       </View>
     )
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+  }
+});
