@@ -149,7 +149,7 @@ export default class SignUpScreen extends React.Component {
 
             <View style={styles.signin_container}>
               <Text style={styles.signin_line}>Already have an account? </Text>
-              <TouchableOpacity style={styles.signin_touch} onPress={this.signUp} >
+              <TouchableOpacity style={styles.signin_touch} onPress={()=>this.props.navigation.navigate("Welcome")} >
                   <Text style={styles.signin_text}>Log in</Text>
               </TouchableOpacity>
             </View>
