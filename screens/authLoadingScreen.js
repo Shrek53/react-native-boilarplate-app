@@ -10,9 +10,12 @@ import {
   ActivityIndicator,
   AsyncStorage,
 } from 'react-native';
+
+
 import { WebBrowser } from 'expo';
 import {Header,Left,Right,Body,Icon,Title} from 'native-base';
 import { MonoText } from '../components/StyledText';
+
 
 export default class authLoadingScreen extends React.Component {
   // static navigationOptions = {
@@ -28,7 +31,7 @@ export default class authLoadingScreen extends React.Component {
 
   loadApp = async () => {
     const userToken = await AsyncStorage.getItem('userToken')
-    this.props.navigation.navigate(userToken?'App':'Auth')
+    this.props.navigation.navigate(userToken?'Auth':'App')
   }
 
   render() {
@@ -127,4 +130,5 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: '#2e78b7',
   },
+ 
 });

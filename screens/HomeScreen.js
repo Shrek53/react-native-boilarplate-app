@@ -10,6 +10,78 @@ import {
 import { WebBrowser } from 'expo';
 import CommonHeader from './partial/CommonHeader';
 
+import Swiper from 'react-native-swiper';
+class MainSwiper extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      error: null,
+      isLoaded: false,
+      items: []
+    };
+  }
+
+  componentDidMount() {
+    fetch("https://jsonplaceholder.typicode.com/todos")
+      .then(res => res.json())
+      .then(
+        (result) => {
+          this.setState({
+            isLoaded: true,
+            items: result
+          });
+        },
+        // Note: it's important to handle errors here
+        // instead of a catch() block so that we don't swallow
+        // exceptions from actual bugs in components.
+        (error) => {
+          this.setState({
+            isLoaded: true,
+            error
+          });
+        }
+      )
+  }
+  render(){
+    const { error, isLoaded, items } = this.state;
+    if (error) {
+      return <div>Error: {error.message}</div>;
+    } else if (!isLoaded) {
+      return <div>Loading...</div>;
+    } else {
+      return (
+           <Swiper style={styles.wrapper} showsButtons={false} showsPagination={true}>
+          {items.map(item => (
+                    <View style={styles.slide_window} key={item.name}>
+                    <Text style={styles.text}>{item.title} </Text>
+                  </View>
+                    ))}
+      </Swiper>
+      );
+    }
+  }
+}
+
+//     return (
+//       <Swiper style={styles.wrapper} showsButtons={false} showsPagination={true}>
+//         <View style={styles.slide_window}>
+//           <Text style={styles.text}>Hello Swiper</Text>
+//         </View>
+//         <View style={styles.slide_window}>
+//           <Text style={styles.text}>Beautiful</Text>
+//         </View>
+//         {items.map(item => (
+//           <View style={styles.slide_window} key={item.name}>>
+//           <Text style={styles.text}>{item.title} </Text>
+//         </View>
+ 
+//           ))}
+//       </Swiper>
+//     );
+//   }
+// }
+
+
 export default class HomeScreen extends React.Component {
 
   constructor(props) {
@@ -23,7 +95,8 @@ export default class HomeScreen extends React.Component {
     return (
       <View style={styles.container}>
         <CommonHeader title='Home'/>
-        <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
+        <MainSwiper/>
+        {/* <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
             <View style={styles.welcomeContainer}>
               <Image
                 source={
@@ -37,11 +110,11 @@ export default class HomeScreen extends React.Component {
 
             <View style={styles.getStartedContainer}>
               <Text style={styles.getStartedText}>
-              {/* Welcome {this.state.user_email},  */}
               This is a Boilar plate app with drawer and bottom tab navigation
               </Text>
             </View>
         </ScrollView>
+       */}
       </View>
     );
   }
@@ -167,4 +240,15 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: '#2e78b7',
   },
+   slide_window: {
+       flex: 1,
+       justifyContent: 'center',
+       alignItems: 'center',
+       backgroundColor: '#fff',
+     },
+     text: {
+       color: '#000',
+       fontSize: 30,
+       fontWeight: 'bold',
+     }
 });
