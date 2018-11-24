@@ -10,6 +10,8 @@ import {
 import { WebBrowser } from "expo";
 import CommonHeader from "./partial/CommonHeader";
 import MainSwiper from "../components/SwiperComponent";
+import FloatingButtonComponent from "../components/FloatingButtonComponent";
+
 // import RobotInfoComponent from "../components/RobotInfoComponent";
 
 
@@ -26,6 +28,7 @@ export default class HomeScreen extends React.Component {
       <View style={styles.container}>
         <CommonHeader title="Home" />
         <MainSwiper />
+        <FloatingButtonComponent/>
       </View>
     );
   }
