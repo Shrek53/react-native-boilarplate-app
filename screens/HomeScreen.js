@@ -3,6 +3,7 @@ import {
   Image,
   Platform,
   ScrollView,
+  SafeAreaView,
   StyleSheet,
   Text,
   View
@@ -11,6 +12,7 @@ import { WebBrowser } from "expo";
 import CommonHeader from "./partial/CommonHeader";
 import MainSwiper from "../components/SwiperComponent";
 import FloatingButtonComponent from "../components/FloatingButtonComponent";
+import GlobalStyles from '../assets/styles/GlobalStyles';
 
 // import RobotInfoComponent from "../components/RobotInfoComponent";
 
@@ -25,11 +27,13 @@ export default class HomeScreen extends React.Component {
 
   render() {
     return (
+      <SafeAreaView style={GlobalStyles.droidSafeArea}>
       <View style={styles.container}>
         <CommonHeader title="Home" />
         <MainSwiper />
         <FloatingButtonComponent/>
       </View>
+      </SafeAreaView>
     );
   }
 }
@@ -37,6 +41,7 @@ export default class HomeScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    elevation: 0,
     backgroundColor: "#fff"
   },
   developmentModeText: {

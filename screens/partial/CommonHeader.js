@@ -13,7 +13,7 @@ class CommonHeader extends React.Component{
       <View>
         <Header style={{ backgroundColor:'#00ccff'}}>
             <Left style={{flex:1}}>
-              <Icon name='menu' style={{marginTop:10, fontSize:32, color:'white'}} onPress={()=>this.props.navigation.openDrawer()} />
+              <Icon name='menu' style={{ fontSize:32, color:'white'}} onPress={()=>this.props.navigation.openDrawer()} />
             </Left>
             <Body style={{flex:1,alignItems:'center'}} >
               <Title style={{textAlign:'left',color:'white'}}>{this.props.title}</Title>
