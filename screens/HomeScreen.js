@@ -6,7 +6,7 @@ import {
   SafeAreaView,
   StyleSheet,
   Text,
-  View
+  View,
 } from "react-native";
 import { WebBrowser } from "expo";
 import CommonHeader from "./partial/CommonHeader";
