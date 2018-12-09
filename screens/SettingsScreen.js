@@ -1,7 +1,8 @@
 import  React  from 'react';
 import { ExpoConfigView } from '@expo/samples';
-import { View, Button, AsyncStorage,StyleSheet } from 'react-native';
+import { View, Button, AsyncStorage,StyleSheet,SafeAreaView } from 'react-native';
 import CommonHeader from './partial/CommonHeader';
+import GlobalStyles from '../assets/styles/GlobalStyles';
 
 export default class SettingsScreen extends React.Component {
   static navigationOptions = {
@@ -17,12 +18,14 @@ export default class SettingsScreen extends React.Component {
      * content, we just wanted to give you a quick view of your config */
     // return <ExpoConfigView />;
     return(
+      <SafeAreaView style={GlobalStyles.droidSafeArea}>
       <View style={styles.container}>
         <CommonHeader title="Settings"/>
         <View style={{flex:1,alignItems:'center',justifyContent:'center'}}>
           <Button title='sign out' onPress={this.signOut}/>
         </View>
       </View>
+      </SafeAreaView>
     )
   }
 }

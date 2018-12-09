@@ -5,15 +5,17 @@ import {
   ScrollView,
   StyleSheet,
   Text,
-  View
+  View,
+  Dimensions
 } from "react-native";
 import Swiper from "react-native-swiper";
+import Theme from '../constants/Theme';
 
 const renderPagination = (index=0, total, context) => {
   return (
     <View style={styles.paginationStyle}>
       <Text style={{ color: "grey" }}>
-        <Text style={styles.paginationText}>{index + 1}</Text>/{total}
+        <Text style={styles.paginationText}>{index + 1} of {total}</Text>
       </Text>
     </View>
   );
@@ -103,11 +105,15 @@ const styles = StyleSheet.create({
   },
   paginationStyle: {
     position: 'absolute',
-    bottom: 10,
-    right: 10
+    bottom: 30,
+    left: 10,
+    padding:10,
+    borderRadius:30,
+    backgroundColor:Theme.Global.Blue,
+
   },
   paginationText: {
-    color: '#000',
-    // fontSize: 20
+    color: '#fff',
+    fontSize: 20
   },
 });
