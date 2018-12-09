@@ -9,6 +9,7 @@ import {
   Dimensions
 } from "react-native";
 import Swiper from "react-native-swiper";
+import Theme from '../constants/Theme';
 
 const renderPagination = (index=0, total, context) => {
   return (
@@ -108,7 +109,7 @@ const styles = StyleSheet.create({
     left: 10,
     padding:10,
     borderRadius:30,
-    backgroundColor:'rgba(231,76,60,1)',
+    backgroundColor:Theme.Global.Blue,
 
   },
   paginationText: {

@@ -10,11 +10,12 @@ import {
 } from "react-native";
 import ActionButton from 'react-native-action-button';
 import Icon from 'react-native-vector-icons/Ionicons';
+import Theme from '../constants/Theme';
 
 export default class FloatingButtonComponent extends React.Component {
   render() {
     return (
-      <ActionButton buttonColor="rgba(231,76,60,1)">
+      <ActionButton buttonColor={Theme.Global.Blue}>
         <ActionButton.Item
           buttonColor="#9b59b6"
           title="New Task"

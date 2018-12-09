@@ -14,9 +14,6 @@ import MainSwiper from "../components/SwiperComponent";
 import FloatingButtonComponent from "../components/FloatingButtonComponent";
 import GlobalStyles from '../assets/styles/GlobalStyles';
 
-// import RobotInfoComponent from "../components/RobotInfoComponent";
-
-
 export default class HomeScreen extends React.Component {
   constructor(props) {
     super(props);

@@ -6,8 +6,5 @@ export default StyleSheet.create({
         flex: 1,
         backgroundColor: Theme.Global.Blue,
         paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
-        elevation: 2,
-        shadowColor: 'red',
-        shadowOpacity: 0,
     },
 });
